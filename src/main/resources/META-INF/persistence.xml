@@ -6,7 +6,7 @@
              version="2.1">
     <persistence-unit name="evinjete-vinjete" transaction-type="JTA">
 
-        <jta-data-source>jdbc/PrekrskiDS</jta-data-source>
+        <jta-data-source>jdbc/VinjeteDS</jta-data-source>
 
         <class>si.evinjete.vinjete.Vinjeta</class>
 

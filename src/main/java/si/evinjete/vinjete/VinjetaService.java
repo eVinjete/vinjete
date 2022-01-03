@@ -8,7 +8,7 @@ import java.util.List;
 
 @RequestScoped
 public class VinjetaService {
-    @PersistenceContext(unitName = "evinjete-vinjeta")
+    @PersistenceContext(unitName = "evinjete-vinjete")
     private EntityManager em;
 
     public Vinjeta getVinjeta(String VinjetaId) {
