@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2022-01-03T21:19:58Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  generateName: vinjete-
+  labels:
+    app: vinjete
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":8082,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: GoogleCloudConsole
+    operation: Update
+    time: "2022-01-03T21:19:58Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2022-01-03T21:19:58Z"
+  name: vinjete-wjsv4
+  namespace: default
+  resourceVersion: "2376520"
+  uid: 51c26050-3d2c-4cf1-970f-b266e12ea5cf
+spec:
+  clusterIP: 10.8.12.183
+  clusterIPs:
+  - 10.8.12.183
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30397
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: vinjete
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
