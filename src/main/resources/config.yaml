@@ -10,8 +10,8 @@ kumuluzee:
   datasources:
     - jndi-name: jdbc/VinjeteDS
       connection-url: jdbc:postgresql://34.122.241.182:5432/vinjete
-        username: postgres
-        password: X2CY4dBkNa1i
+      username: postgres
+      password: X2CY4dBkNa1i
       pool:
         max-size: 20
   persistence-units:
