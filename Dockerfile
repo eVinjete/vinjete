@@ -1,13 +1,11 @@
-#FROM openjdk:8-jre-alpine
-FROM openjdk:11-jre-buster
-
-RUN mkdir /app
-
+FROM maven:3.6.3-openjdk-15 AS build
+COPY ./ /app
 WORKDIR /app
+RUN mvn --show-version --update-snapshots --batch-mode clean package
 
-ADD ./target/vinjete-1.0.0-SNAPSHOT.jar /app
-ADD ./resources /app/resources
-
+FROM openjdk:11-jre-buster
+RUN mkdir /app
+WORKDIR /app
+COPY --from=build ./app/target/vinjete-1.0.0-SNAPSHOT.jar /app
 EXPOSE 8082
-
-CMD ["java", "-jar", "anpr-1.0.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "vinjete-1.0.0-SNAPSHOT.jar"]

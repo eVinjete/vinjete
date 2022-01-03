@@ -6,34 +6,28 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.io.IOException;
 
-
 @Path("upload")
 public class VinjeteResource {
 
 
     @POST
-    @Path("/image")
-    @Consumes("image/jpeg")
-    public Response uploadImage(InputStream uploadedInputStream) throws IOException {
-        String pwd = System.getProperty("user.dir");
-        File file = File.createTempFile("tablica", ".jpg");
-        copyInputStreamToFile(uploadedInputStream, file);
-        String absolutePath = file.toString();
-        String numberPlate = "";
+    @Path("/vinjeta/vnesi")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response vnesiVinjeto(Vinjeta v) throws IOException {
+        return Response.status(200).entity(123).build();
+        /*String numberPlate = v.getNumberPlate();
+        System.out.println("Recieved a new vinjeta entry: " + numberPlate);
 
-        try {
-            file.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Absolute path: " + absolutePath);
-        System.out.println("Number plate: " + numberPlate);
-
-        return Response.status(200).entity(numberPlate).build();
+        return Response.status(200).entity(numberPlate).build();*/
     }
 
-    @POST
+    @GET
+    public Response getRequest() {
+        System.out.println("Recieved GET request.");
+        return Response.status(200).build();
+    }
+
+    /*@POST
     @Path("/slika")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response zaznajSlika(int slika) throws IOException {
@@ -48,5 +42,5 @@ public class VinjeteResource {
         try (OutputStream output = new FileOutputStream(file, false)) {
             input.transferTo(output);
         }
-    }
+    }*/
 }
