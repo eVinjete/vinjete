@@ -42,7 +42,8 @@ public class VinjetaService {
 
     @Transactional(Transactional.TxType.REQUIRED)
     public void deleteVinjeta(String VinjetaId) {
-        Vinjeta vinjeta = em.find(Vinjeta.class, VinjetaId);
+        Integer id = Integer.valueOf(VinjetaId);
+        Vinjeta vinjeta = em.find(Vinjeta.class, id);
         if (vinjeta != null) {
             em.remove(vinjeta);
         }
