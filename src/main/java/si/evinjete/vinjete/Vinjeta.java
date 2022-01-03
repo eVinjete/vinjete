@@ -11,8 +11,16 @@ import java.util.Date;
                 name = "Vinjeta.findVinjete",
                 query = "SELECT v " +
                         "FROM Vinjeta v"
-        )
+        ),
 })
+@NamedNativeQueries(
+        {
+                @NamedNativeQuery(
+                        name = "Vinjeta.findVinjetaFromTablica",
+                        query = "SELECT * FROM vinjete WHERE numberplate LIKE :tablica", resultClass = Vinjeta.class
+                )
+        }
+)
 public class Vinjeta implements Serializable {
 
     @Column(nullable = false)

@@ -12,7 +12,8 @@ public class VinjetaService {
     private EntityManager em;
 
     public Vinjeta getVinjeta(String VinjetaId) {
-        return em.find(Vinjeta.class, VinjetaId);
+        Integer id = Integer.valueOf(VinjetaId);
+        return em.find(Vinjeta.class, id);
     }
 
     public List<Vinjeta> getVinjete() {
@@ -21,6 +22,15 @@ public class VinjetaService {
                 .getResultList();
 
         return vinjete;
+    }
+
+    public List<Vinjeta> getVinjetaFromTablica(String t){
+        List<Vinjeta> v = em
+                .createNamedQuery("Vinjeta.findVinjetaFromTablica", Vinjeta.class)
+                .setParameter("tablica", t)
+                .getResultList();
+
+        return v;
     }
 
     @Transactional

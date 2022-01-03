@@ -32,9 +32,18 @@ public class VinjetaResource {
     }
 
     @GET
-    @Path("{vinjetaId}")
+    @Path("/vinjeta/{vinjetaId}")
     public Response getVinjeta(@PathParam("vinjetaId") String vinjetaId) {
         Vinjeta vinjeta = vinjetaBean.getVinjeta(vinjetaId);
+        return vinjeta != null
+                ? Response.ok(vinjeta).build()
+                : Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Path("/tablica/{tablica}")
+    public Response getVinjetaFromTablica(@PathParam("tablica") String tablica) {
+        List<Vinjeta> vinjeta = vinjetaBean.getVinjetaFromTablica(tablica);
         return vinjeta != null
                 ? Response.ok(vinjeta).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
@@ -43,13 +52,15 @@ public class VinjetaResource {
     @POST
     public Response addNewVinjeta(Vinjeta vinjeta) {
 
-        if(vinjeta.getNumberPlate() == null || vinjeta.getClientId() == null || vinjeta.getId() == null) {
+        if(vinjeta.getNumberPlate() == null || vinjeta.getClientId() == null) {
+            System.out.println("a");
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
+        System.out.println("b");
         vinjeta.setTimestamp(new Date());
         vinjetaBean.addNewVinjeta(vinjeta);
-
+        System.out.println("c");
         return Response.ok(vinjeta).build();
     }
 
