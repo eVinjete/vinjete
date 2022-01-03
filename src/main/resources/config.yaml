@@ -7,6 +7,13 @@ kumuluzee:
     base-url: http://0.0.0.0:8082
     http:
       port: 8082
+  datasources:
+    - jndi-name: jdbc/VinjeteDS
+      connection-url: jdbc:postgresql://34.122.241.182:5432/vinjete
+        username: postgres
+        password: X2CY4dBkNa1i
+      pool:
+        max-size: 20
   persistence-units:
     - name: "evinjete-vinjete"
       continue-on-error: false

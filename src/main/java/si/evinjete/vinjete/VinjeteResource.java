@@ -13,7 +13,8 @@ public class VinjeteResource {
     @POST
     @Path("/vinjeta/vnesi")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response vnesiVinjeto(Vinjeta v) throws IOException {
+    public Response vnesiVinjeto(Vinjeta v) {
+        System.out.println(v.getNumberPlate());
         return Response.status(200).entity(123).build();
         /*String numberPlate = v.getNumberPlate();
         System.out.println("Recieved a new vinjeta entry: " + numberPlate);
@@ -22,6 +23,7 @@ public class VinjeteResource {
     }
 
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response getRequest() {
         System.out.println("Recieved GET request.");
         return Response.status(200).build();
