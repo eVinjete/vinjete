@@ -53,14 +53,11 @@ public class VinjetaResource {
     public Response addNewVinjeta(Vinjeta vinjeta) {
 
         if(vinjeta.getNumberPlate() == null || vinjeta.getClientId() == null) {
-            System.out.println("a");
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
-        System.out.println("b");
         vinjeta.setTimestamp(new Date());
         vinjetaBean.addNewVinjeta(vinjeta);
-        System.out.println("c");
         return Response.ok(vinjeta).build();
     }
 

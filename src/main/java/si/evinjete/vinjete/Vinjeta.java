@@ -17,7 +17,7 @@ import java.util.Date;
         {
                 @NamedNativeQuery(
                         name = "Vinjeta.findVinjetaFromTablica",
-                        query = "SELECT * FROM vinjete WHERE numberplate LIKE :tablica", resultClass = Vinjeta.class
+                        query = "SELECT * FROM vinjeta WHERE numberplate = :tablica", resultClass = Vinjeta.class
                 )
         }
 )
