@@ -25,17 +25,17 @@ public class VinjetaService {
     }
 
     public List<Vinjeta> getVinjetaFromTablica(String t){
-        System.out.println("INFO -- Recieved query for tablica: " + t);
+        System.out.print("INFO -- Recieved query for tablica: " + t);
         List<Vinjeta> v = em
                 .createNamedQuery("Vinjeta.findVinjetaFromTablica", Vinjeta.class)
                 .setParameter("tablica", t)
                 .getResultList();
 
         if(v.isEmpty()){
-            System.out.print("  -- no entry found");
+            System.out.println("  -- no entry found");
         }
         else{
-            System.out.print("  -- found for client id: " + v.get(0).getId());
+            System.out.println("  -- found for client id: " + v.get(0).getId());
         }
 
         return v;

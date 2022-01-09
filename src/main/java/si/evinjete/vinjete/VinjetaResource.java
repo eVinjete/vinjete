@@ -44,7 +44,7 @@ public class VinjetaResource {
     @Path("/tablica/{tablica}")
     public Response getVinjetaFromTablica(@PathParam("tablica") String tablica) {
         List<Vinjeta> vinjeta = vinjetaBean.getVinjetaFromTablica(tablica);
-        return vinjeta != null
+        return vinjeta != null && !vinjeta.isEmpty()
                 ? Response.ok(vinjeta).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
     }
