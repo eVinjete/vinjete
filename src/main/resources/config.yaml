@@ -4,9 +4,9 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://0.0.0.0:8082
+    base-url: http://0.0.0.0:8080
     http:
-      port: 8082
+      port: 8080
   datasources:
     - jndi-name: jdbc/VinjeteDS
       connection-url: jdbc:postgresql://34.122.241.182:5432/vinjete
