@@ -3,6 +3,7 @@ package si.evinjete.vinjete;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "vinjeta")
@@ -18,6 +19,10 @@ import java.util.Date;
                 @NamedNativeQuery(
                         name = "Vinjeta.findVinjetaFromTablica",
                         query = "SELECT * FROM vinjeta WHERE numberplate = :tablica", resultClass = Vinjeta.class
+                ),
+                @NamedNativeQuery(
+                        name = "Vinjeta.findVinjetaFromUporabnikId",
+                        query = "SELECT * FROM vinjeta WHERE clientid = :id", resultClass = Vinjeta.class
                 )
         }
 )

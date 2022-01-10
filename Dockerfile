@@ -1,7 +1,6 @@
 FROM maven:3.6.3-openjdk-15 AS build
 COPY ./ /app
 WORKDIR /app
-RUN mvn --show-version --update-snapshots --batch-mode clean package
 
 FROM openjdk:11-jre-buster
 RUN mkdir /app

@@ -41,6 +41,24 @@ public class VinjetaResource {
     }
 
     @GET
+    @Path("/uporabnik/{uporabnikId}")
+    public Response getVinjetaFromUporabnikId(@PathParam("uporabnikId") String uporabnikId) {
+        Integer id;
+        try{
+            id = Integer.valueOf(uporabnikId);
+        }
+        catch (Exception e){
+            System.out.println("INFO -- /uporabnik/{id} called but given non INTEGER parameter " + uporabnikId);
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        List<Vinjeta> vinjete = vinjetaBean.getVinjetaFromUporabnik(id);
+        return vinjete != null
+                ? Response.ok(vinjete).build()
+                : Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
     @Path("/tablica/{tablica}")
     public Response getVinjetaFromTablica(@PathParam("tablica") String tablica) {
         List<Vinjeta> vinjeta = vinjetaBean.getVinjetaFromTablica(tablica);
