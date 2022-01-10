@@ -1,16 +1,21 @@
 package si.evinjete.vinjete;
 
+import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
@@ -80,6 +85,14 @@ public class VinjetaResource {
 
         vinjeta.setTimestamp(new Date());
         vinjetaBean.addNewVinjeta(vinjeta);
+
+        Optional<String> keySms = ConfigurationUtil.getInstance().get("keysms");
+        System.out.println(keySms);
+
+        Client client = ClientBuilder.newClient();
+        wb = client.target("https://gw.sinhro.si/api/http?username=sinhro&password="+keySms+"&call-number=38641560927&text=Hvala za nakup vinjete "+vinjeta.getNumberPlate());
+        Response response = wb.request().get();
+
         return Response.ok(vinjeta).build();
     }
 
