@@ -90,7 +90,7 @@ public class VinjetaResource {
         System.out.println(keySms);
 
         Client client = ClientBuilder.newClient();
-        wb = client.target("https://gw.sinhro.si/api/http?username=sinhro&password="+keySms.get()+"&call-number=38641560927&text=Hvala za nakup vinjete "+vinjeta.getNumberPlate());
+        wb = client.target("https://gw.sinhro.si/api/http?username=sinhro&password="+keySms.get()+"&call-number=38641560927&text=Hvala%20za%20nakup%20vinjete%20"+vinjeta.getNumberPlate());
         Response response = wb.request().get();
 
         return Response.ok(vinjeta).build();
