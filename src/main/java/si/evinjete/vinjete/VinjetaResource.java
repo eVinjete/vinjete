@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Date;
@@ -53,8 +54,11 @@ public class VinjetaResource {
         }
 
         List<Vinjeta> vinjete = vinjetaBean.getVinjetaFromUporabnik(id);
+        final GenericEntity<List<Vinjeta>> entity
+                = new GenericEntity<List<Vinjeta>>(vinjete) {};
+
         return vinjete != null
-                ? Response.ok(vinjete).build()
+                ? Response.ok(entity).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
     }
 
